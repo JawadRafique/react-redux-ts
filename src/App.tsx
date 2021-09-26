@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
 import "./App.css";
+import { Card } from "./components/card/Card";
 import { actionCreators, State } from "./state";
 
 interface IState {
@@ -62,6 +63,11 @@ function App() {
             </button>
             <br></br>
             <button onClick={() => bankrupt()}>Bankrupt</button>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <Card />
         </div>
     );
 }

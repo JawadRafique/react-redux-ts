@@ -1,4 +1,5 @@
 import { ActionTypes } from "../action-types/index";
+import { User } from "../../common/types";
 
 interface DepositAction {
     type: ActionTypes.DEPOSIT;
@@ -12,4 +13,13 @@ interface BankruptAction {
     type: ActionTypes.BANKRUPT;
 }
 
-export type Action = DepositAction | WithdrawAction | BankruptAction;
+interface GetUserAction {
+    type: ActionTypes.GET_USER;
+    payload: User;
+}
+
+export type Action =
+    | DepositAction
+    | WithdrawAction
+    | BankruptAction
+    | GetUserAction;
