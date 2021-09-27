@@ -1,3 +1,11 @@
+## Used:
+
+1. [Redux](https://redux.js.org/)
+2. [React-Redux](https://react-redux.js.org/)
+3. [Redux Thunk](https://github.com/reduxjs/redux-thunk)
+4. [Typescript](https://www.typescriptlang.org/)
+5. [Public Api](https://jsonplaceholder.typicode.com/users/)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
