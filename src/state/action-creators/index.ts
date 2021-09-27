@@ -2,7 +2,7 @@ import { ActionTypes } from "../action-types";
 import { Dispatch, AnyAction } from "redux";
 import { Action } from "../actions";
 import { ThunkAction, ThunkDispatch } from "redux-thunk";
-import { User } from "../../common/types";
+import { Types } from "../../common/types";
 
 export const depositMoney = (amount: number) => {
     return (dispatch: Dispatch<Action>) => {
@@ -30,15 +30,16 @@ export const bankrupt = () => {
     };
 };
 
-export const setUser = (userData: User) => {
+export const setUser = (userData: Types["user"]) => {
     return (dispatch: Dispatch<Action>) => {
-        // console.log("user function", user);
-        const user: User = {
-            name: userData.name,
-            id: userData.id,
-            username: userData.username,
-            phone: userData.phone,
-        };
+        const user: Types["user"] = userData.map((item, key) => {
+            return {
+                name: item.name,
+                id: item.id,
+                username: item.username,
+                phone: item.phone,
+            };
+        });
         dispatch({
             type: ActionTypes.GET_USER,
             payload: user,
@@ -47,7 +48,7 @@ export const setUser = (userData: User) => {
 };
 
 export const getUser = (): ThunkAction<Promise<void>, {}, {}, AnyAction> => {
-    const data = fetch("https://jsonplaceholder.typicode.com/users/1")
+    const data = fetch("https://jsonplaceholder.typicode.com/users/")
         .then(
             (res) => {
                 return res.json();
@@ -59,7 +60,7 @@ export const getUser = (): ThunkAction<Promise<void>, {}, {}, AnyAction> => {
             return data;
         });
     return (dispatch: ThunkDispatch<{}, {}, AnyAction>): Promise<void> => {
-        let user: User;
+        let user: Types["user"];
         return new Promise<void>(async (resolve) => {
             await data
                 .then((result) => {

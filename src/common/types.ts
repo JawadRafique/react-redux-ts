@@ -1,10 +1,5 @@
 export interface Types {
-    user: {
-        id: number;
-        name: string;
-        username: string;
-        phone: number;
-    };
+    user: User[];
 }
 
 export interface User {

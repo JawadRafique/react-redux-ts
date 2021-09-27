@@ -1,5 +1,5 @@
 import { ActionTypes } from "../action-types/index";
-import { User } from "../../common/types";
+import { Types } from "../../common/types";
 
 interface DepositAction {
     type: ActionTypes.DEPOSIT;
@@ -15,7 +15,7 @@ interface BankruptAction {
 
 interface GetUserAction {
     type: ActionTypes.GET_USER;
-    payload: User;
+    payload: Types["user"];
 }
 
 export type Action =

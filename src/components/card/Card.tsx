@@ -1,30 +1,48 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
-import { User } from "../../common/types";
+import { Types } from "../../common/types";
 import { actionCreators, State } from "../../state";
 
 export const Card = () => {
-    const [userData, setUserData] = useState<User>();
     const dispatch = useDispatch();
     const { getUser } = bindActionCreators(actionCreators, dispatch);
-    const user = useSelector((state: State) => state.user);
+    const user: Types["user"] = useSelector((state: State) => state.user);
     useEffect(() => {
         getUser();
     }, []);
-    // const userData:User = user;
-    console.log("user", user);
+    console.log(user);
     return (
-        <div>
-            <button onClick={getUser}>Get User</button>
-            {user && (
-                <ul>
-                    <li>{user.id}</li>
-                    <li>{user.name}</li>
-                    <li>{user.username}</li>
-                    <li>{user.phone}</li>
-                </ul>
-            )}
-        </div>
+        <>
+            <div>
+                <button onClick={getUser}>Get User</button>
+            </div>
+            <div>
+                {
+                    user.length >= 1 && (
+                        <>
+                            {user.map((item, key) => {
+                                return (
+                                    <ul key={key}>
+                                        <li>name: {item.id}</li>
+                                        <li>name: {item.name}</li>
+                                        <li>name: {item.phone}</li>
+                                        <li>name: {item.username}</li>
+                                    </ul>
+                                );
+                            })}
+                        </>
+                    )
+                    // : (
+                    //     <ul>
+                    //         <li>name: {userData.id}</li>
+                    //         <li>name: {userData.name}</li>
+                    //         <li>name: {userData.phone}</li>
+                    //         <li>name: {userData.username}</li>
+                    //     </ul>
+                    // )
+                }
+            </div>
+        </>
     );
 };
