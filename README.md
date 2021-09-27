@@ -1,4 +1,4 @@
-## Used:
+## Used
 
 1. [Redux](https://redux.js.org/)
 2. [React-Redux](https://react-redux.js.org/)
